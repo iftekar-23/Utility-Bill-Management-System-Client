@@ -4,6 +4,7 @@ import BillCard from "../Component/BillCard";
 import HowItWorks from "../Component/HowItWorks";
 import WhyChooseUs from "../Component/WhyChooseUs";
 import CategorySection from "../Component/CategorySection";
+import RecentBills from "../Component/RecentBills";
 
 const Home = () => {
  
@@ -18,6 +19,8 @@ const Home = () => {
 
 
         <CategorySection></CategorySection>
+
+        <RecentBills></RecentBills>
 
         <HowItWorks></HowItWorks>
 
