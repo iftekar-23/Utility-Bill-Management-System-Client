@@ -27,7 +27,7 @@ const slides = [
 const Banner = () => {
   const [current, setCurrent] = useState(0);
 
-  // Autoplay every 5s
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -49,7 +49,7 @@ const Banner = () => {
           transition={{ duration: 0.8 }}
           className="absolute inset-0 w-full h-full"
         >
-          {/* Image Container with fixed aspect ratio */}
+          
           <div className="w-full h-full overflow-hidden">
             <img
               src={slides[current].image}
@@ -58,7 +58,6 @@ const Banner = () => {
             />
           </div>
 
-          {/* Centered Text Overlay */}
           <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-4 md:px-16">
             <motion.h2
               key={slides[current].title}
@@ -82,7 +81,7 @@ const Banner = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows */}
+    
       <button
         onClick={prevSlide}
         className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl p-2 bg-black/30 rounded-full hover:bg-black/50 transition"
@@ -96,7 +95,7 @@ const Banner = () => {
         <IoArrowForward />
       </button>
 
-      {/* Dots */}
+     
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
         {slides.map((_, index) => (
           <button
