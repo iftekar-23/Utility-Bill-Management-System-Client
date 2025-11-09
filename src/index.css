@@ -1,2 +1,37 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@layer base {
+  :root {
+    --primary: #2F80ED;
+    --secondary: #56CCF2;
+    --text-main: #333333;
+    --text-light: #4F4F4F;
+    --bg-main: #ffffff;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: "Inter", sans-serif;
+  }
+
+  .btn-primary {
+    @apply text-white transition-all duration-300;
+    background: var(--primary);
+  }
+  .btn-primary:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    background: var(--primary);
+    color: #fff;
+  }
+}

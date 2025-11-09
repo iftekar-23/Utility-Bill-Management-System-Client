@@ -1,9 +1,10 @@
 import React from 'react';
 import { Outlet } from "react-router";
 import { Toaster } from "react-hot-toast";
-
 import Navbar from '../Component/Navbar';
 import Footer from '../Component/Footer';
+// import Footer from '../Component/Footer';
+
 
 const RootLayout = () => {
     return (
