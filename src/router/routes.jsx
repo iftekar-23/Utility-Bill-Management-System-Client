@@ -4,6 +4,8 @@ import Home from "../Home/Home";
 import Bills from "../Pages/Bills";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import PrivateRoute from "./PrivateRoute";
+import BillDetails from "../Pages/BillDetails";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
                 path: "/register",
                 element: <Register />
             },
+            {
+                path: "/bills/:id",
+                element: (
+                    <PrivateRoute>
+                        <BillDetails />
+                    </PrivateRoute>
+                ),
+            }
         ]
     }
 ])

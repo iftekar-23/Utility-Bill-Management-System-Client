@@ -1,19 +1,31 @@
-import { use } from "react";
+import React, { useContext } from "react";
+import { Navigate, useLocation } from "react-router";
+import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
-import { Navigate } from "react-router";
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading } = use(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-gray-500 text-lg">Loading...</p>
+      </div>
+    );
   }
 
   if (!user) {
-    return <Navigate state={location?.pathname} to="/auth/login"></Navigate>;
+    toast.error("You must be logged in to access this page!");
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  return children;
+  return (
+    <>
+      {children}
+      <Toaster />
+    </>
+  );
 };
 
 export default PrivateRoute;
