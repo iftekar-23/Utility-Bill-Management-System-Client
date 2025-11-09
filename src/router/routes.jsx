@@ -7,6 +7,7 @@ import Register from "../Pages/Register";
 import PrivateRoute from "./PrivateRoute";
 import BillDetails from "../Pages/BillDetails";
 import MyPayBills from "../Pages/MyPayBills";
+import NotFound from "../Pages/NotFound";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
                 )
             },
         ]
+    },
+    {
+        path:'*',
+        element:<NotFound></NotFound>
     }
 ])
 
