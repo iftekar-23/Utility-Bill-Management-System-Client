@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../Component/Banner";
 import BillCard from "../Component/BillCard";
+import HowItWorks from "../Component/HowItWorks";
+import WhyChooseUs from "../Component/WhyChooseUs";
 
 const Home = () => {
   const [bills, setBills] = useState([]);
@@ -30,6 +32,11 @@ const Home = () => {
             <BillCard key={bill._id} bill={bill} />
           ))}
         </div>
+
+        {/* how it works */}
+        <HowItWorks></HowItWorks>
+
+        <WhyChooseUs></WhyChooseUs>
       </section>
     </div>
   );
