@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Banner from "../Component/Banner";
 import BillCard from "../Component/BillCard";
 import HowItWorks from "../Component/HowItWorks";
 import WhyChooseUs from "../Component/WhyChooseUs";
+import CategorySection from "../Component/CategorySection";
 
 const Home = () => {
-  const [bills, setBills] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:4500/bills")
-      .then((res) => res.json())
-      .then((data) => setBills(data))
-      .catch((err) => console.error(err));
-  }, []);
+ 
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -21,19 +15,10 @@ const Home = () => {
 
       {/* Category Section */}
       <section className="my-16">
-        <h2 className="text-center text-3xl md:text-4xl font-bold text-gray-800 mb-10 relative inline-block w-full">
-          Categories
-          <span className="block w-24 h-1 bg-blue-500 mx-auto mt-2 rounded"></span>
-        </h2>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {bills.map((bill) => (
-            <BillCard key={bill._id} bill={bill} />
-          ))}
-        </div>
 
-        {/* how it works */}
+        <CategorySection></CategorySection>
+
         <HowItWorks></HowItWorks>
 
         <WhyChooseUs></WhyChooseUs>
