@@ -161,7 +161,7 @@ const MyPayBills = () => {
 
   return (
     <div className="max-w-7xl mx-auto my-12 p-6 bg-white shadow-2xl rounded-2xl">
-      {/* Header */}
+    
       <div className="flex flex-col md:flex-row justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-4 md:mb-0">My Paid Bills</h1>
         <button
@@ -172,13 +172,13 @@ const MyPayBills = () => {
         </button>
       </div>
 
-      {/* Totals */}
+   
       <div className="mb-6 flex flex-col sm:flex-row gap-4 text-gray-700 font-semibold">
         <p>Total Bills Paid: {totalPaid}</p>
         <p>Total Amount: ৳{totalAmount.toLocaleString()}</p>
       </div>
 
-      {/* Bills Table */}
+  
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-200 rounded-xl">
           <thead className="bg-gray-100">
@@ -223,7 +223,7 @@ const MyPayBills = () => {
         </table>
       </div>
 
-      {/* Update Modal */}
+
       {updateModalOpen && (
         <div className="fixed inset-0 z-50 flex items-end lg:items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-t-3xl lg:rounded-3xl w-full max-w-md lg:max-w-lg p-6 lg:p-8 max-h-[90vh] overflow-y-auto shadow-2xl transform transition-transform duration-300 animate-slideUp">
@@ -294,7 +294,7 @@ const MyPayBills = () => {
         </div>
       )}
 
-      {/* Delete Modal */}
+      
       {deleteModalOpen && (
         <div className="fixed inset-0 z-50 flex items-end lg:items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-t-3xl lg:rounded-3xl w-full max-w-sm p-6 lg:p-8 shadow-2xl transform transition-transform duration-300 animate-slideUp">

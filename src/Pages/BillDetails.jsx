@@ -97,7 +97,7 @@ const BillDetails = () => {
     return (
         <div className="max-w-6xl mx-auto my-12 p-6 bg-white shadow-2xl rounded-2xl">
             <div className="flex flex-col lg:flex-row gap-8">
-                {/* Image Section */}
+              
                 <div className="lg:w-1/2 flex justify-center items-center">
                     <img
                         src={bill.image}
@@ -106,7 +106,7 @@ const BillDetails = () => {
                     />
                 </div>
 
-                {/* Details Section */}
+       
                 <div className="lg:w-1/2 flex flex-col justify-between">
                     <div>
                         <h1 className="text-4xl font-extrabold text-gray-900 mb-4">{bill.title}</h1>
@@ -120,7 +120,7 @@ const BillDetails = () => {
                         </div>
                     </div>
 
-                    {/* Pay Button */}
+            
                     <button
                         disabled={payDisabled}
                         onClick={() => setModalOpen(true)}
@@ -134,13 +134,13 @@ const BillDetails = () => {
                 </div>
             </div>
 
-            {/* Modal */}
+        
             {modalOpen && (
                 <div className="fixed inset-0 z-50 flex items-end lg:items-center justify-center bg-black/50 backdrop-blur-sm">
                     <div className="bg-white rounded-t-3xl lg:rounded-3xl w-full max-w-md lg:max-w-lg p-6 lg:p-8 transform transition-transform duration-300 animate-slideUp max-h-[90vh] overflow-y-auto shadow-2xl">
                         <h2 className="text-2xl font-bold mb-6 text-center lg:text-left">Pay Bill</h2>
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            {/* Email */}
+                     
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Email</label>
                                 <input
@@ -152,7 +152,7 @@ const BillDetails = () => {
                                 />
                             </div>
 
-                            {/* Bill ID */}
+                           
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Bill ID</label>
                                 <input
@@ -164,7 +164,7 @@ const BillDetails = () => {
                                 />
                             </div>
 
-                            {/* Amount */}
+                   
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Amount</label>
                                 <input
@@ -176,7 +176,7 @@ const BillDetails = () => {
                                 />
                             </div>
 
-                            {/* Username */}
+                           
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Username</label>
                                 <input
@@ -192,7 +192,7 @@ const BillDetails = () => {
                                 />
                             </div>
 
-                            {/* Address */}
+                    
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Address</label>
                                 <input
@@ -208,7 +208,6 @@ const BillDetails = () => {
                                 />
                             </div>
 
-                            {/* Phone */}
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Phone</label>
                                 <input
@@ -224,7 +223,7 @@ const BillDetails = () => {
                                 />
                             </div>
 
-                            {/* Additional Info */}
+                         
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Additional Info</label>
                                 <textarea
@@ -238,7 +237,7 @@ const BillDetails = () => {
                                 ></textarea>
                             </div>
 
-                            {/* Buttons */}
+                           
                             <div className="flex flex-col lg:flex-row justify-end gap-4 mt-4">
                                 <button
                                     type="button"

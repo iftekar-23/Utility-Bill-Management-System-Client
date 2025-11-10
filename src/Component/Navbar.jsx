@@ -8,6 +8,7 @@ import { FaUserCircle } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
 import { BsMoonStarsFill, BsSunFill } from "react-icons/bs";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 const NavBar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -15,14 +16,14 @@ const NavBar = () => {
   const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // scroll shadow
+ 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // theme apply to body
+  
   useEffect(() => {
     if (theme === "dark") {
       document.body.style.backgroundColor = "#0f172a";
@@ -61,13 +62,11 @@ const NavBar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-md"
-          : "bg-white/80 backdrop-blur-sm"
+        isScrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
-        {/* Logo */}
+        
         <Link
           to="/"
           className="text-2xl font-bold text-blue-600 tracking-wide flex items-center gap-2"
@@ -76,7 +75,7 @@ const NavBar = () => {
           UBM System
         </Link>
 
-        {/* Desktop Menu */}
+        
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
           <li>
             <NavLink to="/" className={navLinkClass}>
@@ -101,11 +100,27 @@ const NavBar = () => {
               </NavLink>
             </li>
           )}
+          {user && (
+            <li>
+              <NavLink to="/profile" className={navLinkClass}>
+                <span className="flex items-center gap-2">
+                  <FaUserCircle className="text-lg" /> Profile
+                </span>
+              </NavLink>
+            </li>
+          )}
+          <li>
+            <NavLink to="/help" className={navLinkClass}>
+              <span className="flex items-center gap-2">
+                <AiOutlineQuestionCircle className="text-lg" /> Help
+              </span>
+            </NavLink>
+          </li>
         </ul>
 
-        {/* Right Side (Desktop) */}
+      
         <div className="hidden md:flex items-center gap-3">
-          {/* Theme Toggle */}
+        
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100 transition"
@@ -119,17 +134,7 @@ const NavBar = () => {
 
           {user ? (
             <>
-              <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-gray-300 cursor-pointer">
-                {user.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt="profile"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <FaUserCircle className="w-full h-full text-gray-400" />
-                )}
-              </div>
+            
               <button
                 onClick={handleLogout}
                 className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 hover:bg-blue-700 transition"
@@ -156,7 +161,7 @@ const NavBar = () => {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
+       
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -195,14 +200,26 @@ const NavBar = () => {
               </NavLink>
             </li>
             {user && (
-              <li>
-                <NavLink to="/my-pay-bills" className={navLinkClass}>
-                  My Pay Bills
-                </NavLink>
-              </li>
+              <>
+                <li>
+                  <NavLink to="/my-pay-bills" className={navLinkClass}>
+                    My Pay Bills
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/profile" className={navLinkClass}>
+                    Profile
+                  </NavLink>
+                </li>
+              </>
             )}
+            <li>
+              <NavLink to="/help" className={navLinkClass}>
+                Help
+              </NavLink>
+            </li>
 
-            {/* Theme Toggle */}
+          
             <li className="flex items-center gap-3 mt-4">
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -216,7 +233,7 @@ const NavBar = () => {
               </button>
             </li>
 
-            {/* Auth Buttons */}
+            
             {user ? (
               <li className="w-full">
                 <button

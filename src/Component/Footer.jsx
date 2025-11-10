@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-b from-gray-50 to-white border-t border-gray-200 mt-20">
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
         
-        {/* Logo & Description */}
+        
         <div>
           <Link
             to="/"
@@ -21,7 +21,7 @@ const Footer = () => {
             secure and intuitive interface. Stay organized, stay efficient.
           </p>
 
-          {/* Social Media */}
+          
           <div className="flex gap-4 mt-5">
             <a
               href="https://facebook.com"
@@ -58,7 +58,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Useful Links */}
         <div>
           <h3 className="text-lg font-semibold text-gray-800 mb-4">
             Useful Links
@@ -83,7 +82,6 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* About Section */}
         <div>
           <h3 className="text-lg font-semibold text-gray-800 mb-4">About</h3>
           <p className="text-gray-600 text-sm leading-relaxed">
@@ -94,7 +92,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Section */}
+     
       <div className="border-t border-gray-200 text-center py-5 bg-gray-50">
         <p className="text-gray-500 text-sm">
           © {new Date().getFullYear()}{" "}

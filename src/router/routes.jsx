@@ -8,6 +8,8 @@ import PrivateRoute from "./PrivateRoute";
 import BillDetails from "../Pages/BillDetails";
 import MyPayBills from "../Pages/MyPayBills";
 import NotFound from "../Pages/NotFound";
+import Profile from "../Pages/Profile";
+import Help from "../Pages/Help";
 
 const router = createBrowserRouter([
     {
@@ -46,11 +48,23 @@ const router = createBrowserRouter([
                     </PrivateRoute>
                 )
             },
+            {
+                path: "/profile",
+                element: (
+                    <PrivateRoute>
+                        <Profile />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: "/help",
+                element: <Help />,
+            },
         ]
     },
     {
-        path:'*',
-        element:<NotFound></NotFound>
+        path: '*',
+        element: <NotFound></NotFound>
     }
 ])
 

@@ -49,7 +49,7 @@ const Register = () => {
       .catch(() => setError("Email already registered or invalid format."));
   };
 
-  // 🌐 Google Sign-in
+
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then(() => {
@@ -72,7 +72,7 @@ const Register = () => {
         </h2>
 
         <form onSubmit={handleRegister} className="space-y-5">
-          {/* Name */}
+        
           <div>
             <label className="block mb-1 text-gray-600 font-medium">Full Name</label>
             <input
@@ -84,7 +84,7 @@ const Register = () => {
             />
           </div>
 
-          {/* Email */}
+        
           <div>
             <label className="block mb-1 text-gray-600 font-medium">Email</label>
             <input
@@ -96,7 +96,7 @@ const Register = () => {
             />
           </div>
 
-          {/* Photo URL */}
+      
           <div>
             <label className="block mb-1 text-gray-600 font-medium">Photo URL</label>
             <input
@@ -107,7 +107,7 @@ const Register = () => {
             />
           </div>
 
-          {/* Password */}
+     
           <div>
             <label className="block mb-1 text-gray-600 font-medium">Password</label>
             <input
@@ -131,7 +131,7 @@ const Register = () => {
           </button>
         </form>
 
-        {/* Google Login */}
+       
         <div className="mt-6">
           <p className="text-center text-gray-600">Or continue with</p>
           <button
@@ -142,7 +142,7 @@ const Register = () => {
           </button>
         </div>
 
-        {/* Login Link */}
+      
         <p className="mt-6 text-center text-gray-600">
           Already have an account?{" "}
           <Link to="/login" className="text-blue-600 hover:underline">

@@ -39,14 +39,14 @@ const RecentBills = () => {
               key={bill._id}
               className="bg-white border border-gray-100 shadow-md rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col"
             >
-              {/* Bill Image */}
+          
               <img
                 src={bill.image}
                 alt={bill.title}
                 className="w-full h-48 object-cover"
               />
 
-              {/* Bill Info */}
+             
               <div className="p-5 flex flex-col justify-between flex-grow">
                 <div>
                   <h3 className="text-xl font-bold mb-1 text-gray-800">
