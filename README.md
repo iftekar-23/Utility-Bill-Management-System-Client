@@ -96,17 +96,17 @@ Download PDF report
 
 # 🌗 Additional Features
 
-# Theme toggle (Dark / Light)
+- Theme toggle (Dark / Light)
 
-# Dynamic page titles
+- Dynamic page titles
 
-# 404 Not Found Page
+- 404 Not Found Page
 
-# Loading spinner on fetch
+- Loading spinner on fetch
 
-# Custom toast / alert messages
+- Custom toast / alert messages
 
-# Responsive for mobile, tablet, and desktop
+- Responsive for mobile, tablet, and desktop
 
 
 # 👨‍💻 Author
