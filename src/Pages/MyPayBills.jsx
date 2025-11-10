@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const MyPayBills = () => {
   const { user } = useContext(AuthContext);
@@ -115,28 +117,42 @@ const MyPayBills = () => {
 
   // Download CSV
   const handleDownload = () => {
-    const headers = ["Username", "Email", "Amount", "Address", "Phone", "Date"];
-    const rows = bills.map((b) => [
-      b.username,
-      b.email,
+    if (!bills.length) {
+      toast.error("No bills found to download!");
+      return;
+    }
+
+    const doc = new jsPDF();
+
+   
+    doc.setFontSize(18);
+    doc.text("My Bills Report", 14, 20);
+    doc.setFontSize(12);
+    doc.text(`User: ${user?.displayName || "N/A"} (${user?.email || "N/A"})`, 14, 30);
+    doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 38);
+
+
+    const tableColumn = ["Amount ($)", "Address", "Phone", "Date"];
+    const tableRows = bills.map((b) => [
       b.amount,
       b.address,
       b.phone,
-      b.date ? new Date(b.date).toLocaleDateString() : new Date().toLocaleDateString(),
+      b.date ? new Date(b.date).toLocaleDateString() : "N/A",
     ]);
 
-    let csvContent =
-      "data:text/csv;charset=utf-8," +
-      [headers, ...rows].map((e) => e.join(",")).join("\n");
 
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_bills_report.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    doc.autoTable({
+      startY: 45,
+      head: [tableColumn],
+      body: tableRows,
+      theme: "grid",
+      headStyles: { fillColor: [66, 133, 244] },
+    });
+
+    
+    doc.save("my_bills_report.pdf");
   };
+
 
   if (loading) {
     return (
