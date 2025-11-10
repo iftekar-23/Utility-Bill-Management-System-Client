@@ -7,22 +7,36 @@ import { MdPayment } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../context/AuthContext";
+import { BsMoonStarsFill, BsSunFill } from "react-icons/bs";
 
 const NavBar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [theme, setTheme] = useState("light");
+  const [menuOpen, setMenuOpen] = useState(false);
 
+  // scroll shadow
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // theme apply to body
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.style.backgroundColor = "#0f172a";
+      document.body.style.color = "#f1f5f9";
+    } else {
+      document.body.style.backgroundColor = "#ffffff";
+      document.body.style.color = "#0f172a";
+    }
+  }, [theme]);
+
   const navLinkClass = ({ isActive }) =>
     isActive
-      ? "text-primary font-semibold border-b-2 border-primary transition-all"
-      : "text-gray-700 hover:text-primary hover:border-b-2 hover:border-primary transition-all";
-
+      ? "text-blue-600 font-semibold border-b-2 border-blue-600 transition-all"
+      : "text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-600 transition-all";
 
   const handleLogout = () => {
     Swal.fire({
@@ -36,38 +50,38 @@ const NavBar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         signOutUser()
-          .then(() => {
-            Swal.fire("Logged out!", "You have been logged out.", "success");
-          })
-          .catch((err) => {
-            Swal.fire("Error!", err.message, "error");
-          });
+          .then(() =>
+            Swal.fire("Logged out!", "You have been logged out.", "success")
+          )
+          .catch((err) => Swal.fire("Error!", err.message, "error"));
       }
     });
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur-sm"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white shadow-md"
+          : "bg-white/80 backdrop-blur-sm"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
-
+        {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-bold text-primary tracking-wide flex items-center gap-2"
+          className="text-2xl font-bold text-blue-600 tracking-wide flex items-center gap-2"
         >
-          <MdPayment className="text-primary text-3xl" />
+          <MdPayment className="text-blue-600 text-3xl" />
           UBM System
         </Link>
 
-
+        {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
           <li>
             <NavLink to="/" className={navLinkClass}>
               <span className="flex items-center gap-2">
-                <GoHomeFill className="text-lg" />
-                Home
+                <GoHomeFill className="text-lg" /> Home
               </span>
             </NavLink>
           </li>
@@ -89,11 +103,22 @@ const NavBar = () => {
           )}
         </ul>
 
+        {/* Right Side (Desktop) */}
+        <div className="hidden md:flex items-center gap-3">
+          {/* Theme Toggle */}
+          <button
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100 transition"
+          >
+            {theme === "light" ? (
+              <BsMoonStarsFill className="text-lg text-gray-700" />
+            ) : (
+              <BsSunFill className="text-lg text-yellow-400" />
+            )}
+          </button>
 
-        <div className="flex items-center gap-3">
           {user ? (
-            <div className="flex items-center gap-3 relative group">
-
+            <>
               <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-gray-300 cursor-pointer">
                 {user.photoURL ? (
                   <img
@@ -105,33 +130,25 @@ const NavBar = () => {
                   <FaUserCircle className="w-full h-full text-gray-400" />
                 )}
               </div>
-
-
-              <span className="absolute left-1/2 top-full mt-2 -translate-x-1/2 opacity-0 group-hover:opacity-100 bg-gray-800 text-white text-xs px-2 py-1 rounded transition-opacity whitespace-nowrap pointer-events-none">
-                {user.displayName || "User"}
-              </span>
-
-
               <button
                 onClick={handleLogout}
-                className="btn-primary px-4 py-1.5 rounded-full text-sm font-medium shadow-sm hover:shadow-md transition-all flex items-center gap-1"
+                className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 hover:bg-blue-700 transition"
               >
-                <IoLogOut className="text-base" />
+                <IoLogOut />
                 Logout
               </button>
-            </div>
+            </>
           ) : (
             <>
               <NavLink
                 to="/login"
-                className="btn-primary px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1"
+                className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1"
               >
-                <IoLogIn className="text-base" />
-                Login
+                <IoLogIn /> Login
               </NavLink>
               <NavLink
                 to="/register"
-                className="btn-outline px-4 py-1.5 rounded-full text-sm font-medium"
+                className="border border-blue-600 text-blue-600 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-blue-50 transition"
               >
                 Register
               </NavLink>
@@ -139,13 +156,11 @@ const NavBar = () => {
           )}
         </div>
 
-
+        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button
-            onClick={() =>
-              document.getElementById("mobile-menu").classList.toggle("hidden")
-            }
-            className="text-gray-700 hover:text-primary transition-all"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-gray-700 hover:text-blue-600 transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -165,62 +180,75 @@ const NavBar = () => {
         </div>
       </div>
 
-
-      <div
-        id="mobile-menu"
-        className="hidden bg-white border-t shadow-sm md:hidden transition-all"
-      >
-        <ul className="flex flex-col items-start gap-3 py-4 px-6 list-none m-0">
-          <li>
-            <NavLink to="/" className={navLinkClass}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/bills" className={navLinkClass}>
-              Bills
-            </NavLink>
-          </li>
-          {user && (
+      {/* Mobile Dropdown */}
+      {menuOpen && (
+        <div className="md:hidden bg-white border-t shadow-sm transition-all">
+          <ul className="flex flex-col items-start gap-4 py-4 px-6 list-none m-0">
             <li>
-              <NavLink to="/my-pay-bills" className={navLinkClass}>
-                My Pay Bills
+              <NavLink to="/" className={navLinkClass}>
+                Home
               </NavLink>
             </li>
-          )}
-          {user ? (
-            <li className="w-full">
+            <li>
+              <NavLink to="/bills" className={navLinkClass}>
+                Bills
+              </NavLink>
+            </li>
+            {user && (
+              <li>
+                <NavLink to="/my-pay-bills" className={navLinkClass}>
+                  My Pay Bills
+                </NavLink>
+              </li>
+            )}
+
+            {/* Theme Toggle */}
+            <li className="flex items-center gap-3 mt-4">
               <button
-                onClick={handleLogout}
-                className="btn-primary w-full py-1.5 rounded-full mt-2 flex items-center justify-center gap-1"
+                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100 transition"
               >
-                <IoLogOut />
-                Logout
+                {theme === "light" ? (
+                  <BsMoonStarsFill className="text-lg text-gray-700" />
+                ) : (
+                  <BsSunFill className="text-lg text-yellow-400" />
+                )}
               </button>
             </li>
-          ) : (
-            <>
+
+            {/* Auth Buttons */}
+            {user ? (
               <li className="w-full">
-                <NavLink
-                  to="/login"
-                  className="btn-primary w-full py-1.5 rounded-full flex items-center justify-center gap-1"
+                <button
+                  onClick={handleLogout}
+                  className="bg-blue-600 w-full text-white py-2 rounded-full mt-3 flex items-center justify-center gap-1"
                 >
-                  <IoLogIn />
-                  Login
-                </NavLink>
+                  <IoLogOut /> Logout
+                </button>
               </li>
-              <li className="w-full">
-                <NavLink
-                  to="/register"
-                  className="btn-outline w-full py-1.5 rounded-full flex items-center justify-center"
-                >
-                  Register
-                </NavLink>
-              </li>
-            </>
-          )}
-        </ul>
-      </div>
+            ) : (
+              <>
+                <li className="w-full">
+                  <NavLink
+                    to="/login"
+                    className="bg-blue-600 w-full text-white py-2 rounded-full flex items-center justify-center gap-1"
+                  >
+                    <IoLogIn /> Login
+                  </NavLink>
+                </li>
+                <li className="w-full">
+                  <NavLink
+                    to="/register"
+                    className="border border-blue-600 w-full py-2 rounded-full flex items-center justify-center text-blue-600"
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };
