@@ -8,7 +8,7 @@ import CategorySection from "../Component/CategorySection";
 import RecentBills from "../Component/RecentBills";
 
 const Home = () => {
-  // Animation variants
+
   const sectionVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0 },
