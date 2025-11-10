@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import Spinner from "../Component/Spinner";
 
 const MyPayBills = () => {
   const { user } = useContext(AuthContext);
@@ -155,11 +156,7 @@ const MyPayBills = () => {
 
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-gray-500 text-lg">Loading your bills...</p>
-      </div>
-    );
+    return <Spinner></Spinner>
   }
 
   return (

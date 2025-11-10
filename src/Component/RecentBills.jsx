@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import Spinner from "./Spinner";
 
 const RecentBills = () => {
   const [recentBills, setRecentBills] = useState([]);
@@ -19,11 +20,7 @@ const RecentBills = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="text-center text-gray-500 text-lg mt-6">
-        Loading recent bills...
-      </div>
-    );
+    return <Spinner></Spinner>;
   }
 
   return (

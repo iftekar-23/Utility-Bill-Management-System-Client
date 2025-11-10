@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext";
+import Spinner from "../Component/Spinner";
 
 const BillDetails = () => {
     const { id } = useParams();
@@ -82,11 +83,7 @@ const BillDetails = () => {
     };
 
     if (loading) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <p className="text-gray-500 text-lg">Loading bill details...</p>
-            </div>
-        );
+        return <Spinner></Spinner>
     }
 
     if (!bill) {
