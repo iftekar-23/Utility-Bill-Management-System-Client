@@ -10,6 +10,7 @@ import MyPayBills from "../Pages/MyPayBills";
 import NotFound from "../Pages/NotFound";
 import Profile from "../Pages/Profile";
 import Help from "../Pages/Help";
+import AddBill from "../Pages/AddBill";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: '/bills',
                 element: <Bills></Bills>
+            },
+            {
+                path:'/add-bill',
+                element:<AddBill></AddBill>
             },
             {
                 path: "/login",

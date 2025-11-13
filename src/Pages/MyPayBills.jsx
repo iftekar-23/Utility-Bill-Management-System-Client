@@ -25,7 +25,7 @@ const MyPayBills = () => {
   const fetchBills = async () => {
     if (!user) return;
     try {
-      const res = await fetch(`http://localhost:4500/payments?email=${user.email}`);
+      const res = await fetch(`https://ubms-server.vercel.app/payments?email=${user.email}`);
       const data = await res.json();
       setBills(data);
       setLoading(false);
@@ -71,7 +71,7 @@ const MyPayBills = () => {
         amount: parseFloat(formData.amount), // ensure number
       };
 
-      const res = await fetch(`http://localhost:4500/payments/${selectedBill._id}`, {
+      const res = await fetch(`https://ubms-server.vercel.app/payments/${selectedBill._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedData),
@@ -101,7 +101,7 @@ const MyPayBills = () => {
   // Handle bill deletion
   const handleDelete = async () => {
     try {
-      const res = await fetch(`http://localhost:4500/payments/${selectedBill._id}`, {
+      const res = await fetch(`https://ubms-server.vercel.app/payments/${selectedBill._id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Delete failed");

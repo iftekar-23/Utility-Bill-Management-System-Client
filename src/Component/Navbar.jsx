@@ -16,14 +16,14 @@ const NavBar = () => {
   const [theme, setTheme] = useState("light");
   const [menuOpen, setMenuOpen] = useState(false);
 
- 
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  
+
   useEffect(() => {
     if (theme === "dark") {
       document.body.style.backgroundColor = "#0f172a";
@@ -61,12 +61,11 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur-sm"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-white/80 backdrop-blur-sm"
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center h-16">
-        
+
         <Link
           to="/"
           className="text-2xl font-bold text-blue-600 tracking-wide flex items-center gap-2"
@@ -75,7 +74,7 @@ const NavBar = () => {
           UBM System
         </Link>
 
-        
+
         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
           <li>
             <NavLink to="/" className={navLinkClass}>
@@ -88,6 +87,13 @@ const NavBar = () => {
             <NavLink to="/bills" className={navLinkClass}>
               <span className="flex items-center gap-2">
                 <ImBoxAdd className="text-lg" /> Bills
+              </span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/add-bill" className={navLinkClass}>
+              <span className="flex items-center gap-2">
+                <ImBoxAdd className="text-lg" /> Add Bill
               </span>
             </NavLink>
           </li>
@@ -118,9 +124,9 @@ const NavBar = () => {
           </li>
         </ul>
 
-      
+
         <div className="hidden md:flex items-center gap-3">
-        
+
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-300 hover:bg-gray-100 transition"
@@ -134,7 +140,7 @@ const NavBar = () => {
 
           {user ? (
             <>
-            
+
               <button
                 onClick={handleLogout}
                 className="bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-medium flex items-center gap-1 hover:bg-blue-700 transition"
@@ -161,7 +167,7 @@ const NavBar = () => {
           )}
         </div>
 
-       
+
         <div className="md:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -219,7 +225,7 @@ const NavBar = () => {
               </NavLink>
             </li>
 
-          
+
             <li className="flex items-center gap-3 mt-4">
               <button
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
@@ -233,7 +239,7 @@ const NavBar = () => {
               </button>
             </li>
 
-            
+
             {user ? (
               <li className="w-full">
                 <button

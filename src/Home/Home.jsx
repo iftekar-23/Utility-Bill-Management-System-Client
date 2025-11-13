@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaInfoCircle } from "react-icons/fa";
 import Banner from "../Component/Banner";
 import HowItWorks from "../Component/HowItWorks";
 import WhyChooseUs from "../Component/WhyChooseUs";
 import CategorySection from "../Component/CategorySection";
 import RecentBills from "../Component/RecentBills";
+import Spinner from "../Component/Spinner";
 
 const Home = () => {
+ 
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setInitialLoading(false), 1000); 
+    return () => clearTimeout(timer);
+  }, []);
+
+
   const sectionVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0 },
@@ -17,6 +26,8 @@ const Home = () => {
     hidden: { opacity: 0, scale: 0.8 },
     visible: { opacity: 1, scale: 1 },
   };
+
+  if (initialLoading) return <Spinner />; 
 
   return (
     <motion.div
@@ -29,11 +40,9 @@ const Home = () => {
       <motion.div
         variants={sectionVariants}
         transition={{ duration: 0.8 }}
-        className="relative"
+        className="relative mb-16"
       >
-        <div className="flex justify-between items-center mb-4">
-          <Banner />
-        </div>
+        <Banner />
       </motion.div>
 
       {/* Category Section */}
@@ -52,10 +61,11 @@ const Home = () => {
         </motion.div>
       </motion.section>
 
-      {/* Recent Bills */}
-      <motion.div
+    
+      <motion.section
         variants={sectionVariants}
         transition={{ duration: 0.8, delay: 0.3 }}
+        className="mb-16"
       >
         <motion.div
           variants={tooltipVariants}
@@ -63,29 +73,31 @@ const Home = () => {
           data-tooltip-id="global-tooltip"
           data-tooltip-content="See your most recent bills here"
         >
-          <RecentBills />
+          <RecentBills /> 
         </motion.div>
-      </motion.div>
+      </motion.section>
 
-      {/* How It Works */}
-      <motion.div
+      {/* How It Works Section */}
+      <motion.section
         variants={sectionVariants}
         transition={{ duration: 0.8, delay: 0.4 }}
         data-tooltip-id="global-tooltip"
         data-tooltip-content="Understand how UBM System works"
+        className="mb-16"
       >
         <HowItWorks />
-      </motion.div>
+      </motion.section>
 
-      {/* Why Choose Us */}
-      <motion.div
+      {/* Why Choose Us Section */}
+      <motion.section
         variants={sectionVariants}
         transition={{ duration: 0.8, delay: 0.5 }}
         data-tooltip-id="global-tooltip"
         data-tooltip-content="Discover why users love UBM System"
+        className="mb-16"
       >
         <WhyChooseUs />
-      </motion.div>
+      </motion.section>
     </motion.div>
   );
 };

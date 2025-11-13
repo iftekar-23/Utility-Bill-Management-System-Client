@@ -7,7 +7,7 @@ const RecentBills = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:4500/recent-bills")
+    fetch("https://ubms-server.vercel.app/recent-bills")
       .then((res) => res.json())
       .then((data) => {
         setRecentBills(data);

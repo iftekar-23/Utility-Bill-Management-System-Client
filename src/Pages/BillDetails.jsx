@@ -24,7 +24,7 @@ const BillDetails = () => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:4500/bills/${id}`)
+        fetch(`https://ubms-server.vercel.app/bills/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 setBill(data);
@@ -66,7 +66,7 @@ const BillDetails = () => {
         }
 
         try {
-            const res = await fetch("http://localhost:4500/payments", {
+            const res = await fetch("https://ubms-server.vercel.app/payments", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
