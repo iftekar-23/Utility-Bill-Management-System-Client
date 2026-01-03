@@ -5,10 +5,17 @@ import HowItWorks from "../Component/HowItWorks";
 import WhyChooseUs from "../Component/WhyChooseUs";
 import CategorySection from "../Component/CategorySection";
 import RecentBills from "../Component/RecentBills";
+import Features from "../Component/Features";
+import Services from "../Component/Services";
+import Statistics from "../Component/Statistics";
+import Testimonials from "../Component/Testimonials";
+import BlogSection from "../Component/BlogSection";
+import FAQ from "../Component/FAQ";
+import CallToAction from "../Component/CallToAction";
 import Spinner from "../Component/Spinner";
+import Newsletter from "../Component/NewsLetter";
 
 const Home = () => {
- 
   const [initialLoading, setInitialLoading] = useState(true);
 
   useEffect(() => {
@@ -16,88 +23,97 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
   const sectionVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0 },
-  };
-
-  const tooltipVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 },
   };
 
   if (initialLoading) return <Spinner />; 
 
   return (
     <motion.div
-      className="max-w-7xl mx-auto px-4"
+      className="min-h-screen"
       initial="hidden"
       animate="visible"
-      transition={{ staggerChildren: 0.3 }}
+      transition={{ staggerChildren: 0.2 }}
     >
-      {/* Banner Section */}
-      <motion.div
+      {/* 1. Hero/Banner Section */}
+      <motion.section
         variants={sectionVariants}
         transition={{ duration: 0.8 }}
-        className="relative mb-16"
+        className="container-max px-4 pt-20 pb-8"
       >
         <Banner />
-      </motion.div>
-
-      {/* Category Section */}
-      <motion.section
-        className="my-16"
-        variants={sectionVariants}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <motion.div
-          variants={tooltipVariants}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          data-tooltip-id="global-tooltip"
-          data-tooltip-content="Browse through all available bill categories"
-        >
-          <CategorySection />
-        </motion.div>
       </motion.section>
 
-    
+      {/* 2. Category Section */}
+      <motion.section
+        id="next-section"
+        className="section-padding"
+        variants={sectionVariants}
+        transition={{ duration: 0.8, delay: 0.1 }}
+      >
+        <div className="container-max">
+          <CategorySection />
+        </div>
+      </motion.section>
+
+      {/* 3. Features Section */}
+      <Features />
+
+      {/* 4. Services Section */}
+      <Services />
+
+      {/* 5. Recent Bills Section */}
+      <motion.section
+        variants={sectionVariants}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="section-padding"
+      >
+        <div className="container-max">
+          <RecentBills /> 
+        </div>
+      </motion.section>
+
+      {/* 6. Statistics Section */}
+      <Statistics />
+
+      {/* 7. How It Works Section */}
       <motion.section
         variants={sectionVariants}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="mb-16"
+        className="section-padding"
       >
-        <motion.div
-          variants={tooltipVariants}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          data-tooltip-id="global-tooltip"
-          data-tooltip-content="See your most recent bills here"
-        >
-          <RecentBills /> 
-        </motion.div>
+        <div className="container-max">
+          <HowItWorks />
+        </div>
       </motion.section>
 
-      {/* How It Works Section */}
+      {/* 8. Why Choose Us Section */}
       <motion.section
         variants={sectionVariants}
         transition={{ duration: 0.8, delay: 0.4 }}
-        data-tooltip-id="global-tooltip"
-        data-tooltip-content="Understand how UBM System works"
-        className="mb-16"
+        className="section-padding"
       >
-        <HowItWorks />
+        <div className="container-max">
+          <WhyChooseUs />
+        </div>
       </motion.section>
 
-      {/* Why Choose Us Section */}
-      <motion.section
-        variants={sectionVariants}
-        transition={{ duration: 0.8, delay: 0.5 }}
-        data-tooltip-id="global-tooltip"
-        data-tooltip-content="Discover why users love UBM System"
-        className="mb-16"
-      >
-        <WhyChooseUs />
-      </motion.section>
+      {/* 9. Testimonials Section */}
+      <Testimonials />
+
+      {/* 10. Blog Section */}
+      <BlogSection />
+
+      {/* 11. FAQ Section */}
+      <FAQ />
+
+      {/* 12. Newsletter Section */}
+      <Newsletter />
+
+      {/* 13. Call to Action Section */}
+      <CallToAction />
     </motion.div>
   );
 };

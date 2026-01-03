@@ -3,35 +3,262 @@
 
 @layer base {
   :root {
-    --primary: #2F80ED;
-    --secondary: #56CCF2;
-    --text-main: #333333;
-    --text-light: #4F4F4F;
-    --bg-main: #ffffff;
+    /* Primary Colors (Maximum 3 + Neutral) */
+    --primary: #2563eb;
+    --secondary: #3b82f6;
+    --accent: #1d4ed8;
+    --neutral: #6b7280;
+    
+    /* Light Theme */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --border-color: #e2e8f0;
+    
+    /* Dark Theme Variables */
+    --dark-bg-primary: #0f172a;
+    --dark-bg-secondary: #1e293b;
+    --dark-text-primary: #f1f5f9;
+    --dark-text-secondary: #cbd5e1;
+    --dark-border-color: #334155;
+  }
+
+  [data-theme="dark"] {
+    --bg-primary: var(--dark-bg-primary);
+    --bg-secondary: var(--dark-bg-secondary);
+    --text-primary: var(--dark-text-primary);
+    --text-secondary: var(--dark-text-secondary);
+    --border-color: var(--dark-border-color);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   body {
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    font-family: "Inter", sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
+  /* Consistent Button Styles */
   .btn-primary {
-    @apply text-white transition-all duration-300;
-    background: var(--primary);
+    @apply px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 shadow-md hover:shadow-lg;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
   }
+  
   .btn-primary:hover {
-    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300 border-2;
+    border-color: var(--primary);
+    color: var(--primary);
+    background: transparent;
+  }
+  
+  .btn-secondary:hover {
+    background: var(--primary);
+    color: white;
     transform: translateY(-1px);
   }
 
-  .btn-outline {
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    transition: all 0.3s ease;
+  /* Card Styles */
+  .card {
+    @apply rounded-xl shadow-md border transition-all duration-300;
+    background-color: var(--bg-primary);
+    border-color: var(--border-color);
   }
-  .btn-outline:hover {
+  
+  .card:hover {
+    @apply shadow-xl;
+    transform: translateY(-4px);
+  }
+
+  /* Form Styles */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg border-2 transition-all duration-300 focus:outline-none;
+    border-color: var(--border-color);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  
+  .form-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .form-error {
+    @apply text-red-500 text-sm mt-1;
+  }
+
+  .form-success {
+    @apply text-green-500 text-sm mt-1;
+  }
+
+  /* Consistent Spacing */
+  .section-padding {
+    @apply py-16 px-4;
+  }
+
+  .container-max {
+    @apply max-w-7xl mx-auto;
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+
+  [data-theme="dark"] .skeleton {
+    @apply bg-gray-700;
+  }
+
+  /* Responsive Text */
+  .heading-xl {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  .heading-lg {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+  }
+
+  .heading-md {
+    @apply text-xl md:text-2xl lg:text-3xl font-semibold;
+  }
+
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--neutral);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
-    color: #fff;
+  }
+
+  /* Professional Navbar Styles - Enterprise Grade */
+  .navbar-blur {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .navbar-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="dark"] .navbar-shadow {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Enterprise-grade navigation active states */
+  .nav-link-active {
+    position: relative;
+  }
+
+  .nav-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 1px;
+  }
+
+  /* Minimal, clean transitions */
+  .nav-transition {
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enterprise button styles */
+  .btn-enterprise {
+    @apply px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-150;
+    border: 1px solid transparent;
+  }
+
+  .btn-enterprise-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+
+  .btn-enterprise-secondary {
+    @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100;
+    border-color: transparent;
+  }
+
+  [data-theme="dark"] .btn-enterprise-secondary {
+    @apply text-gray-400 hover:text-white hover:bg-gray-800;
+  }
+
+  /* Clean focus states */
+  .focus-enterprise:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    border-radius: 6px;
+  }
+
+  /* Minimal animations */
+  @keyframes slideDownMinimal {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-down-minimal {
+    animation: slideDownMinimal 0.15s ease-out;
+  }
+
+  /* Clean dropdown shadows */
+  .dropdown-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  [data-theme="dark"] .dropdown-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Enterprise typography */
+  .text-enterprise {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* Minimal hover states */
+  .hover-minimal {
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .hover-minimal:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  [data-theme="dark"] .hover-minimal:hover {
+    background-color: rgba(255, 255, 255, 0.08);
   }
 }
